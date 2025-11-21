@@ -8,28 +8,26 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/context/store/authStore";
 import { useAppDataStore } from "@/context/store/appDataStore";
 import styles from "./NavBar.module.css";
+import FlipImage from "./FlipImage";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuthStore();
   const navigate = useNavigate();
   const { siteConfig } = useAppDataStore();
 
-  const logoSrc =
-    siteConfig && Array.isArray(siteConfig)
-      ? siteConfig.find((s) => s.key.toLowerCase() === "logourl")?.value ??
-        "/logo.svg"
-      : "/logo.svg";
-  const siteTitle =
-    siteConfig && Array.isArray(siteConfig)
-      ? siteConfig.find((s) => s.key.toLowerCase() === "sitetitle")?.value ??
-        "Title"
-      : "Title";
-
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b">
       <div className="flex items-center gap-2">
-        <img src={logoSrc} alt="Logo" className={styles.mainLogo} />
-        <h1 className="text-xl font-semibold">{siteTitle}</h1>
+        <FlipImage siteConfig={siteConfig} />
+        <h1 className="text-xl font-semibold">
+          {siteConfig["SiteTitle"].value}
+        </h1>
+      </div>
+
+      <div className="flex-1 text-center">
+        <p className="text-sm text-gray-600">
+          {siteConfig["Influencer_Name"]?.value}
+        </p>
       </div>
 
       <NavigationMenu>

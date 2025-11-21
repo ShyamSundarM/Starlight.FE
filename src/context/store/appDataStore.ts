@@ -1,5 +1,5 @@
 import { GetSiteConfig } from "@/api/site";
-import type { SiteConfigItem } from "@/utils/types";
+import type { SiteConfigItem, SiteConfigMap } from "@/utils/types";
 import { create } from "zustand";
 
 interface Category {
@@ -17,7 +17,7 @@ interface AppDataState {
   loading: boolean;
   error: string | null;
 
-  siteConfig: SiteConfigItem[] | null;
+  siteConfig: SiteConfigMap;
   categories: Category[] | null;
   products: Product[] | null;
 

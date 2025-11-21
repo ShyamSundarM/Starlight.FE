@@ -5,3 +5,5 @@ export type SiteConfigItem = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type SiteConfigMap = Record<string, SiteConfigItem>;
