@@ -1,0 +1,50 @@
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/context/store/authStore";
+import { useAppDataStore } from "@/context/store/appDataStore";
+import styles from "./NavBar.module.css";
+
+export default function Navbar() {
+  const { isAuthenticated, logout } = useAuthStore();
+  const navigate = useNavigate();
+  const { siteConfig } = useAppDataStore();
+
+  const logoSrc =
+    siteConfig && Array.isArray(siteConfig)
+      ? siteConfig.find((s) => s.key.toLowerCase() === "logourl")?.value ??
+        "/logo.svg"
+      : "/logo.svg";
+  const siteTitle =
+    siteConfig && Array.isArray(siteConfig)
+      ? siteConfig.find((s) => s.key.toLowerCase() === "sitetitle")?.value ??
+        "Title"
+      : "Title";
+
+  return (
+    <header className="flex items-center justify-between px-6 py-3 border-b">
+      <div className="flex items-center gap-2">
+        <img src={logoSrc} alt="Logo" className={styles.mainLogo} />
+        <h1 className="text-xl font-semibold">{siteTitle}</h1>
+      </div>
+
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            {isAuthenticated ? (
+              <Button variant="outline" onClick={logout}>
+                Sign out
+              </Button>
+            ) : (
+              <Button onClick={() => navigate("/login")}>Sign in</Button>
+            )}
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </header>
+  );
+}
