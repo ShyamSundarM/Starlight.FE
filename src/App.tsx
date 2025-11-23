@@ -4,15 +4,12 @@ import { useAuthStore } from "./context/store/authStore";
 import Navbar from "./components/custom/NavBar";
 import { Toaster } from "sonner";
 import { useAppDataStore } from "./context/store/appDataStore";
+import Footer from "./components/custom/Footer";
+import MainContent from "./pages/MainContent";
 
 function App() {
   const { checkSession, loading } = useAuthStore();
-  const {
-    initAppData,
-    loading: appDataLoading,
-    error,
-    siteConfig,
-  } = useAppDataStore();
+  const { initAppData, loading: appDataLoading } = useAppDataStore();
 
   useEffect(() => {
     initAppData();
@@ -30,6 +27,8 @@ function App() {
     <>
       <Toaster />
       <Navbar />
+      <MainContent />
+      <Footer />
     </>
   );
 }
