@@ -5,7 +5,7 @@ import Navbar from "./components/custom/NavBar";
 import { Toaster } from "sonner";
 import { useAppDataStore } from "./context/store/appDataStore";
 import Footer from "./components/custom/Footer";
-import MainContent from "./pages/MainContent";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const { checkSession, loading } = useAuthStore();
@@ -27,7 +27,9 @@ function App() {
     <>
       <Toaster />
       <Navbar />
-      <MainContent />
+      <div style={{ flex: 1, display: "flex" }}>
+        <AppRoutes />
+      </div>
       <Footer />
     </>
   );

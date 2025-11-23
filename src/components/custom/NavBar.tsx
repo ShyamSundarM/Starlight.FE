@@ -17,7 +17,10 @@ export default function Navbar() {
 
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b">
-      <div className="flex items-center gap-2">
+      <div
+        className={`flex items-center gap-2 ${styles.logoSection}`}
+        onClick={() => navigate("/home")}
+      >
         <FlipImage siteConfig={siteConfig} />
         <h1 className="text-xl font-semibold">
           {siteConfig["SiteTitle"].value}
