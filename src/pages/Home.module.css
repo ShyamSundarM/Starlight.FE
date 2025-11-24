@@ -5,25 +5,23 @@
 }
 
 .carouselRoot {
-  flex: 0.5;
+  width: 50%;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 .aboutMeRoot {
-  flex: 0.5;
+  width: 50%;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 640px) {
-  .homeRoot {
-    flex-direction: column;
-    align-items: stretch;
+  .carouselRoot {
+    width: 100%;
   }
 
-  .carouselRoot,
   .aboutMeRoot {
-    flex: 1 1 100%;
     width: 100%;
-    padding: 8px 6px;
   }
 }

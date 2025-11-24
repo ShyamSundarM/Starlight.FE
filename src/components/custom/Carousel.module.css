@@ -8,7 +8,7 @@
 .viewport {
   overflow: hidden;
   width: 100%; /* responsive */
-  max-width: 800px; /* desktop limit */
+  max-width: 1000px; /* desktop limit */
 }
 
 .container {
