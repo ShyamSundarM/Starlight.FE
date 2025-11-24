@@ -1,12 +1,8 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/navigation";
+import { useEffect, useState, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 import styles from "./Carousel.module.css";
-import { useEffect, useState } from "react";
 import { useAppDataStore } from "@/context/store/appDataStore";
 
 const carouselKeys = [
@@ -23,55 +19,73 @@ const carouselKeys = [
 
 export default function Carousel() {
   const { siteConfig } = useAppDataStore();
+
+  const [cardDetails, setCardDetails] = useState<
+    { id: number; key: string; value: string }[]
+  >([]);
+
   useEffect(() => {
     const items = carouselKeys.map((key, index) => ({
       key,
-      value: siteConfig[key].value || "",
+      value: siteConfig[key]?.value || "",
       id: index,
     }));
     setCardDetails(items);
   }, [siteConfig]);
-  const [cardDetails, setCardDetails] = useState<
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
-      id: number;
-      key: string;
-      value: string;
-    }[]
-  >([]);
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+    },
+    [
+      Autoplay({
+        delay: 2000,
+        stopOnInteraction: false,
+      }),
+    ]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    emblaApi.on("select", onSelect);
+
+    // Start on slide 2 like you wanted
+    emblaApi.scrollTo(1, true);
+    onSelect();
+  }, [emblaApi, onSelect]);
 
   return (
     <div className={styles.wrapper}>
-      <Swiper
-        initialSlide={1}
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={2.8}
-        //loop={true}
-        navigation={true}
-        //spaceBetween={-120}
-        modules={[EffectCoverflow, Navigation, Autoplay]}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 300,
-          modifier: 1.6,
-          slideShadows: false,
-        }}
-        className={styles.swiperContainer}
-      >
-        {cardDetails.map((c) => (
-          <SwiperSlide key={c.id}>
-            <div className={styles.card}>
-              <img src={c.value} alt={c.key} className={styles.image} />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={styles.viewport} ref={emblaRef}>
+        <div className={styles.container}>
+          {cardDetails.map((c, index) => {
+            const isActive = index === selectedIndex;
+
+            return (
+              <div
+                key={c.id}
+                className={`${styles.slide} ${
+                  isActive ? styles.activeSlide : styles.inactiveSlide
+                }`}
+              >
+                <div className={styles.card}>
+                  <img src={c.value} alt={c.key} className={styles.image} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

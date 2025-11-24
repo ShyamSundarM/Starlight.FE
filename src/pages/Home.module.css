@@ -1,3 +1,15 @@
 .homeRoot {
   display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.carouselRoot {
+  flex: 0.5;
+  padding: 10px;
+}
+
+.aboutMeRoot {
+  flex: 0.5;
+  padding: 10px;
 }
