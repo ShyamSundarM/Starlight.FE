@@ -13,3 +13,17 @@
   flex: 0.5;
   padding: 10px;
 }
+
+@media (max-width: 640px) {
+  .homeRoot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carouselRoot,
+  .aboutMeRoot {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 8px 6px;
+  }
+}
