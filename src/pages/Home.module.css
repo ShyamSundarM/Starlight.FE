@@ -1,3 +1,7 @@
+/* ─────────────────────────────── */
+/* Existing Layout (kept exactly)  */
+/* ─────────────────────────────── */
+
 .homeRoot {
   display: flex;
   width: 100%;
@@ -14,8 +18,17 @@
   width: 50%;
   padding: 10px;
   box-sizing: border-box;
+
+  /* luxury styling additions */
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 25px 80px;
 }
 
+/* responsive */
 @media (max-width: 640px) {
   .carouselRoot {
     width: 100%;
@@ -23,5 +36,73 @@
 
   .aboutMeRoot {
     width: 100%;
+    max-width: 100%;
+    gap: 1.5rem;
+    padding: 12px;
+  }
+}
+
+/* ─────────────────────────────── */
+/* Luxury Brand Styles             */
+/* ─────────────────────────────── */
+
+.point {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.point:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.point:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.point:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.point:nth-child(4) {
+  animation-delay: 0.55s;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: 0.3px;
+}
+
+.message {
+  font-size: 0.95rem;
+  color: #444;
+  opacity: 0.9;
+  line-height: 1.55;
+}
+
+.endPoint {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #000;
+  text-align: left;
+  letter-spacing: 0.6px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.75s;
+}
+
+/* ─────────────────────────────── */
+/* Fade-in animation               */
+/* ─────────────────────────────── */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

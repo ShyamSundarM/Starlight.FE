@@ -20,15 +20,15 @@ export default function Footer() {
             />
           </a>
           <a
-            href="https://www.facebook.com/for_you__products/"
+            href="https://www.threads.com/@for_you__products"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon icon="logos:facebook" width="16" className={styles.icon} />
+            <Icon icon="hugeicons:threads" width="16" className={styles.icon} />
           </a>
 
           <a
-            href="https://www.youtube.com/for_you__products/"
+            href="https://www.youtube.com/@for_you__products"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -40,15 +40,11 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://twitter.com/for_you__products/"
+            href="https://in.pinterest.com/for_you__products"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon
-              icon="skill-icons:twitter"
-              width={16}
-              className={styles.icon}
-            />
+            <Icon icon="logos:pinterest" width={16} className={styles.icon} />
           </a>
         </div>
       </div>
