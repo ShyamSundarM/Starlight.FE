@@ -1,0 +1,53 @@
+.soft-pink {
+  background: linear-gradient(135deg, #ffe6f1, #ffd9c9, #fff4ec);
+  background-size: 200% 200%;
+  animation: softGradient 12s ease infinite;
+}
+
+@keyframes softGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.lavender-mist {
+  background: linear-gradient(135deg, #e8d9ff, #f7e6ff, #ffe4f0);
+  background-size: 200% 200%;
+  animation: luxuryGradient 14s ease infinite;
+}
+
+@keyframes luxuryGradient {
+  0% {
+    background-position: 20% 50%;
+  }
+  50% {
+    background-position: 80% 50%;
+  }
+  100% {
+    background-position: 20% 50%;
+  }
+}
+
+.champane-gold {
+  background: linear-gradient(135deg, #faf7f2, #f3e6d4, #faf5ed);
+  background-size: 150% 150%;
+  animation: champagneMove 10s ease-in-out infinite;
+}
+
+@keyframes champagneMove {
+  0% {
+    background-position: 0% 40%;
+  }
+  50% {
+    background-position: 100% 60%;
+  }
+  100% {
+    background-position: 0% 40%;
+  }
+}
