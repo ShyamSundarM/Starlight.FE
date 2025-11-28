@@ -1,3 +1,14 @@
 .logoSection {
   cursor: pointer;
 }
+
+.subtitle {
+  text-align: end;
+  font-size: small;
+  color: #00000087;
+}
+
+.headerRoot {
+  background-color: beige;
+  backdrop-filter: blur(10px);
+}

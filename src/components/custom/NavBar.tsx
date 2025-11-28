@@ -16,15 +16,22 @@ export default function Navbar() {
   const { siteConfig } = useAppDataStore();
 
   return (
-    <header className="flex items-center justify-between px-6 py-3 border-b">
+    <header
+      className={`${styles.headerRoot} flex items-center justify-between px-6 py-3 border-b`}
+    >
       <div
         className={`flex items-center gap-2 ${styles.logoSection}`}
         onClick={() => navigate("/")}
       >
         <FlipImage siteConfig={siteConfig} />
-        <h1 className="text-xl font-semibold">
-          {siteConfig["SiteTitle"].value}
-        </h1>
+        <div>
+          <h1 className="text-xl font-semibold">
+            {siteConfig["SiteTitle"]?.value}
+          </h1>
+          <p className={styles.subtitle}>
+            - {siteConfig["Influencer_Name"]?.value}
+          </p>
+        </div>
       </div>
 
       {/* <div className="flex-1 text-center">

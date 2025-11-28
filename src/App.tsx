@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { useAppDataStore } from "./context/store/appDataStore";
 import Footer from "./components/custom/Footer";
 import AppRoutes from "./routes/AppRoutes";
+import AppBootLoader from "./components/custom/AppBootLoader";
 
 function App() {
   const { checkSession, loading } = useAuthStore();
@@ -19,18 +20,22 @@ function App() {
     checkSession();
   }, [checkSession]);
 
-  if (loading || appDataLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
-      <Toaster />
-      <Navbar />
-      <div style={{ flex: 1, display: "flex" }}>
-        <AppRoutes />
-      </div>
-      <Footer />
+      <AppBootLoader
+        isLoading={loading || appDataLoading}
+        finalWords={["For", "You", "Products"]}
+      />
+      {!(loading || appDataLoading) && (
+        <>
+          <Toaster />
+          <Navbar />
+          <div style={{ flex: 1, display: "flex" }}>
+            <AppRoutes />
+          </div>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
