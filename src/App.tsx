@@ -9,7 +9,7 @@ import AppRoutes from "./routes/AppRoutes";
 import AppBootLoader from "./components/custom/AppBootLoader";
 
 function App() {
-  const { checkSession, loading } = useAuthStore();
+  const { init, loading } = useAuthStore();
   const { initAppData, loading: appDataLoading } = useAppDataStore();
 
   useEffect(() => {
@@ -17,8 +17,8 @@ function App() {
   }, [initAppData]);
 
   useEffect(() => {
-    checkSession();
-  }, [checkSession]);
+    init();
+  }, [init]);
 
   return (
     <>
