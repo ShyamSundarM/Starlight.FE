@@ -30,7 +30,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Underline } from "lucide-react";
 import SocialLinkForm from "@/components/custom/SocialLinksForm";
 import { DeleteSocialLink, type SocialLink } from "@/api/socialLinks";
 import { useAppDataStore } from "@/context/store/appDataStore";
@@ -74,6 +74,18 @@ export default function SocialLinks() {
   return (
     <div>
       {loading && <Spinner />}
+      <div style={{ marginBottom: 20 }}>
+        Use logos from{" "}
+        <a
+          style={{
+            color: "blue",
+            textDecoration: "underline",
+          }}
+          href="https://icon-sets.iconify.design/"
+        >
+          Iconify React
+        </a>
+      </div>
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Social Links</h2>

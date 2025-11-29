@@ -34,12 +34,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* <div className="flex-1 text-center">
-        <p className="text-sm text-gray-600">
-          {siteConfig["Influencer_Name"]?.value}
-        </p>
-      </div> */}
-
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
