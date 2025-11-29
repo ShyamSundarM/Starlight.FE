@@ -1,4 +1,5 @@
 import { GetSiteConfig } from "@/api/site";
+import { GetSocialLinks, type SocialLink } from "@/api/socialLinks";
 import type { SiteConfigItem, SiteConfigMap } from "@/utils/types";
 import { create } from "zustand";
 
@@ -20,7 +21,12 @@ interface AppDataState {
   siteConfig: SiteConfigMap;
   categories: Category[] | null;
   products: Product[] | null;
+  socialLinks: SocialLink[] | null;
+  triggerSocialLinksRefresh: boolean;
 
+  setTriggerSocialLinksRefresh: (value: boolean) => void;
+
+  fetchSocialLinks: () => Promise<void>;
   fetchSiteConfig: () => Promise<void>;
   //fetchCategories: () => Promise<void>;
   //fetchProducts: () => Promise<void>;
@@ -30,6 +36,10 @@ interface AppDataState {
 export const useAppDataStore = create<AppDataState>((set, get) => ({
   loading: false,
   error: null,
+  socialLinks: null,
+  triggerSocialLinksRefresh: false,
+  setTriggerSocialLinksRefresh: (value: boolean) =>
+    set({ triggerSocialLinksRefresh: value }),
 
   siteConfig: null,
   categories: null,
@@ -38,6 +48,11 @@ export const useAppDataStore = create<AppDataState>((set, get) => ({
   fetchSiteConfig: async () => {
     const res = await GetSiteConfig();
     set({ siteConfig: res });
+  },
+
+  fetchSocialLinks: async () => {
+    const res = await GetSocialLinks();
+    set({ socialLinks: res });
   },
 
   //   fetchCategories: async () => {
@@ -67,6 +82,7 @@ export const useAppDataStore = create<AppDataState>((set, get) => ({
     try {
       await Promise.all([
         get().fetchSiteConfig(),
+        get().fetchSocialLinks(),
         //get().fetchCategories(),
         //get().fetchProducts(),
       ]);
