@@ -82,6 +82,8 @@ export default function SocialLinks() {
             textDecoration: "underline",
           }}
           href="https://icon-sets.iconify.design/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Iconify React
         </a>

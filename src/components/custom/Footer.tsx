@@ -10,7 +10,12 @@ export default function Footer() {
         <div className={styles["name"]}>Chinmayi is Starlight</div>
         <div className={styles.socialTags}>
           {appData.socialLinks.map((link) => (
-            <a href={link.url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={link.id}
+            >
               <Icon icon={link.logo} width="16" className={styles.icon} />
             </a>
           ))}

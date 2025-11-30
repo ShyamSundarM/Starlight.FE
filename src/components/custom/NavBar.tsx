@@ -13,7 +13,7 @@ import FlipImage from "./FlipImage";
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuthStore();
   const navigate = useNavigate();
-  const { siteConfig } = useAppDataStore();
+  const { siteConfigMap } = useAppDataStore();
 
   return (
     <header
@@ -23,13 +23,13 @@ export default function Navbar() {
         className={`flex items-center gap-2 ${styles.logoSection}`}
         onClick={() => navigate("/")}
       >
-        <FlipImage siteConfig={siteConfig} />
+        <FlipImage siteConfig={siteConfigMap} />
         <div>
           <h1 className="text-xl font-semibold">
-            {siteConfig["SiteTitle"]?.value}
+            {siteConfigMap["SiteTitle"]?.value}
           </h1>
           <p className={styles.subtitle}>
-            - {siteConfig["Influencer_Name"]?.value}
+            - {siteConfigMap["Influencer_Name"]?.value}
           </p>
         </div>
       </div>

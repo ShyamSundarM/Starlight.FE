@@ -18,7 +18,7 @@ const carouselKeys = [
 ];
 
 export default function Carousel() {
-  const { siteConfig } = useAppDataStore();
+  const { siteConfigMap } = useAppDataStore();
 
   const [cardDetails, setCardDetails] = useState<
     { id: number; key: string; value: string }[]
@@ -27,11 +27,11 @@ export default function Carousel() {
   useEffect(() => {
     const items = carouselKeys.map((key, index) => ({
       key,
-      value: siteConfig[key]?.value || "",
+      value: siteConfigMap[key]?.value || "",
       id: index,
     }));
     setCardDetails(items);
-  }, [siteConfig]);
+  }, [siteConfigMap]);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 

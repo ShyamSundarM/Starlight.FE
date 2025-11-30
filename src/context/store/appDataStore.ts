@@ -18,7 +18,8 @@ interface AppDataState {
   loading: boolean;
   error: string | null;
 
-  siteConfig: SiteConfigMap;
+  siteConfigItems: SiteConfigItem[] | null;
+  siteConfigMap: SiteConfigMap | null;
   categories: Category[] | null;
   products: Product[] | null;
   socialLinks: SocialLink[] | null;
@@ -41,13 +42,23 @@ export const useAppDataStore = create<AppDataState>((set, get) => ({
   setTriggerSocialLinksRefresh: (value: boolean) =>
     set({ triggerSocialLinksRefresh: value }),
 
-  siteConfig: null,
+  siteConfigItems: null,
+  siteConfigMap: null,
   categories: null,
   products: null,
 
   fetchSiteConfig: async () => {
     const res = await GetSiteConfig();
-    set({ siteConfig: res });
+
+    set({ siteConfigItems: res });
+
+    // Convert array to map using 'key' property
+    const siteConfigMap = res.reduce<SiteConfigMap>((map, item) => {
+      map[item.key] = item;
+      return map;
+    }, {});
+
+    set({ siteConfigMap });
   },
 
   fetchSocialLinks: async () => {
