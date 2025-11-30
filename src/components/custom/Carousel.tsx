@@ -5,26 +5,19 @@ import Autoplay from "embla-carousel-autoplay";
 import styles from "./Carousel.module.css";
 import { useAppDataStore } from "@/context/store/appDataStore";
 
-const carouselKeys = [
-  "carousel_chinmayi_red_dress_standing_nature",
-  "carousel_chinmayi_blue_saree_sitting_diwali",
-  "carousel_chinmayi_pink_saree_standing",
-  "carousel_chinmayi_standing_pink_dress",
-  "carousel_chinmayi_blue_saree_diwali",
-  "carousel_chinmayi_sitting_yellow_dress",
-  "carousel_chinmayi_holding_calf",
-  "carousel_chinmayi_sitting_blue_dress",
-  "carousel_chinmai_standing_black_saree",
-];
-
 export default function Carousel() {
-  const { siteConfigMap } = useAppDataStore();
+  const { siteConfigMap, siteConfigItems } = useAppDataStore();
 
   const [cardDetails, setCardDetails] = useState<
     { id: number; key: string; value: string }[]
   >([]);
 
   useEffect(() => {
+    const carouselKeys = siteConfigItems
+      ? siteConfigItems
+          .filter((item) => item.key.startsWith("carousel_"))
+          .map((item) => item.key)
+      : [];
     const items = carouselKeys.map((key, index) => ({
       key,
       value: siteConfigMap[key]?.value || "",
