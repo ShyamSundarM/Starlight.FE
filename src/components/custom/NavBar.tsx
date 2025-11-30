@@ -38,9 +38,18 @@ export default function Navbar() {
         <NavigationMenuList>
           <NavigationMenuItem>
             {isAuthenticated ? (
-              <Button variant="outline" onClick={logout}>
-                Sign out
-              </Button>
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate("/admin")}
+                  className="mr-2"
+                >
+                  Admin Portal
+                </Button>
+                <Button variant="outline" onClick={logout}>
+                  Sign out
+                </Button>
+              </>
             ) : (
               <Button onClick={() => navigate("/login")}>Sign in</Button>
             )}

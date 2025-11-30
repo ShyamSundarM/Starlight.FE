@@ -24,8 +24,10 @@ interface AppDataState {
   products: Product[] | null;
   socialLinks: SocialLink[] | null;
   triggerSocialLinksRefresh: boolean;
+  triggerSiteConfigRefresh: boolean;
 
   setTriggerSocialLinksRefresh: (value: boolean) => void;
+  setTriggerSiteConfigRefresh: (value: boolean) => void;
 
   fetchSocialLinks: () => Promise<void>;
   fetchSiteConfig: () => Promise<void>;
@@ -39,8 +41,11 @@ export const useAppDataStore = create<AppDataState>((set, get) => ({
   error: null,
   socialLinks: null,
   triggerSocialLinksRefresh: false,
+  triggerSiteConfigRefresh: false,
   setTriggerSocialLinksRefresh: (value: boolean) =>
     set({ triggerSocialLinksRefresh: value }),
+  setTriggerSiteConfigRefresh: (value: boolean) =>
+    set({ triggerSiteConfigRefresh: value }),
 
   siteConfigItems: null,
   siteConfigMap: null,
